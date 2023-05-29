@@ -1,0 +1,55 @@
+#oops{
+    text-align: center;
+}
+#my-text{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgb(255, 230, 0);
+    font-size: 100px; 
+}
+
+.h1class{
+    color: blue;
+}
+
+#cin {
+    margin:0 auto;
+    color: rgb(0, 251, 255);
+    font-size: 100px; 
+}
+#board {
+    width: 240px;
+    height: 240px;
+    border: 1px solid #000;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .tile {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+body::before {
+    content: "";
+    background-image: url("sky.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    opacity: 0.3;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+  }
+  
