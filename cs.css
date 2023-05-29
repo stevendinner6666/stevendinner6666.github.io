@@ -40,7 +40,7 @@
   
 body::before {
     content: "";
-    background-image: url("good.webp");
+    background-image: url("good.gif");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
