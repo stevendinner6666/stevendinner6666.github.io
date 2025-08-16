@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="一個簡潔、可自訂的一頁式網站範本" />
+  <title>我的網站</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b1020;             /* 背景 */
+      --panel: #11162a;          /* 版面卡片 */
+      --text: #eaeefc;           /* 主要文字 */
+      --muted: #aab3d1;          /* 次要文字 */
+      --primary: #7c9cff;        /* 主色 */
+      --primary-2: #9fd7ff;      /* 主色漸層輔色 */
+      --accent: #a3ffcb;         /* 點綴色 */
+      --ring: rgba(124,156,255,.45);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 16px;
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg: #f7f8ff;
+        --panel: #ffffff;
+        --text: #0f172a;
+        --muted: #475569;
+        --primary: #3b82f6;
+        --primary-2: #60a5fa;
+        --accent: #10b981;
+        --ring: rgba(59,130,246,.35);
+        --shadow: 0 8px 24px rgba(17,24,39,.08);
+      }
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0}
+    body{
+      font-family: 'Noto Sans TC', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+      background: radial-gradient(1200px 600px at 80% -10%, rgba(124,156,255,.16), transparent 60%),
+                  radial-gradient(900px 500px at -10% 10%, rgba(163,255,203,.14), transparent 60%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.7;
+    }
+    a{color:inherit;text-decoration:none}
+    .container{width:min(1120px, 92%); margin:0 auto}
+    .glass{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+           backdrop-filter:saturate(150%) blur(8px);
+           border:1px solid rgba(255,255,255,.08);
+           box-shadow:var(--shadow);
+           border-radius:var(--radius)}
+
+    /* Header */
+    header{position:sticky; top:0; z-index:50; backdrop-filter: blur(6px)}
+    .nav{display:flex; align-items:center; justify-content:space-between; padding:10px 0}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:700}
+    .brand .logo{width:36px; height:36px; border-radius:10px; background:linear-gradient(135deg,var(--primary),var(--primary-2)); box-shadow:0 8px 18px var(--ring)}
+    .nav a.btn{padding:10px 16px; border-radius:999px; background:var(--primary); color:#fff; font-weight:600; box-shadow:0 10px 20px var(--ring)}
+    .nav .links{display:flex; gap:18px; align-items:center}
+    .nav .links a{opacity:.9}
+    .nav .links a:hover{opacity:1}
+
+    /* Hero */
+    .hero{display:grid; grid-template-columns: 1.2fr 1fr; gap:32px; align-items:center; padding:72px 0}
+    .hero h1{font-size: clamp(28px, 4vw, 44px); line-height:1.2; margin:0 0 12px; letter-spacing:.4px}
+    .hero p{color:var(--muted); margin:0 0 24px}
+    .cta{display:flex; gap:12px; flex-wrap:wrap}
+    .btn{display:inline-flex; align-items:center; gap:10px; padding:12px 18px; border-radius:12px; border:1px solid rgba(255,255,255,.12); cursor:pointer; background:var(--panel)}
+    .btn.primary{background:linear-gradient(135deg,var(--primary),var(--primary-2)); color:#fff; border-color:transparent}
+    .badge{display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(124,156,255,.12); color:var(--primary); font-weight:600; border:1px solid rgba(124,156,255,.3)}
+    .hero-card{padding:22px; border-radius:20px}
+    .hero ul{padding-left:20px; margin:0}
+
+    /* Sections */
+    section{padding:56px 0}
+    .section-title{font-size: clamp(22px, 3vw, 30px); margin:0 0 18px}
+    .muted{color:var(--muted)}
+
+    /* Grid cards */
+    .grid{display:grid; gap:16px}
+    .grid.cols-3{grid-template-columns: repeat(3, minmax(0, 1fr))}
+    .grid.cols-2{grid-template-columns: repeat(2, minmax(0, 1fr))}
+    @media (max-width: 900px){
+      .hero{grid-template-columns: 1fr}
+      .grid.cols-3{grid-template-columns: 1fr}
+      .grid.cols-2{grid-template-columns: 1fr}
+    }
+
+    .card{padding:18px; border-radius:18px; background:var(--panel); border:1px solid rgba(255,255,255,.08); box-shadow:var(--shadow)}
+    .card h3{margin:0 0 8px; font-size:20px}
+    .card p{margin:0}
+
+    .pill{display:inline-block; padding:8px 12px; border-radius:999px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08)}
+
+    /* Footer */
+    footer{padding:32px 0 56px; color:var(--muted); border-top:1px dashed rgba(255,255,255,.12)}
+
+    /* Skip link */
+    .skip{
+      position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden;
+    }
+    .skip:focus{left:16px; top:16px; width:auto; height:auto; padding:8px 12px; background:#000; color:#fff; border-radius:8px}
+
+    /* Forms */
+    form{display:grid; gap:12px}
+    input, textarea{width:100%; padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.04); color:var(--text)}
+    input:focus, textarea:focus{outline:none; box-shadow:0 0 0 6px var(--ring); border-color:transparent}
+    label{font-weight:600}
+
+    /* Tiny util */
+    .inline-list{display:flex; gap:8px; flex-wrap:wrap}
+    .center{display:flex; justify-content:center; align-items:center}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">跳到主要內容</a>
+
+  <!-- Header/Nav -->
+  <header class="glass">
+    <div class="container nav">
+      <div class="brand" aria-label="網站商標">
+        <div class="logo" aria-hidden="true"></div>
+        <span>我的網站</span>
+      </div>
+      <nav class="links" aria-label="主選單">
+        <a href="#about">關於我</a>
+        <a href="#projects">作品集</a>
+        <a href="#contact">聯絡</a>
+        <a class="btn" href="#contact">取得聯絡</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <!-- Hero -->
+    <section class="hero">
+      <div>
+        <span class="badge">✨ 超快速上線的個人網站</span>
+        <h1>打造你的個人品牌與作品集</h1>
+        <p>這是一個可直接部署的一頁式網站範本。你可以快速替換文字、顏色、圖片與連結，立刻擁有屬於自己的網站。</p>
+        <div class="cta">
+          <a class="btn primary" href="#projects" role="button" aria-label="查看作品集">查看作品</a>
+          <a class="btn" href="#about" role="button" aria-label="了解關於我">了解關於我</a>
+        </div>
+        <div class="inline-list" style="margin-top:16px">
+          <span class="pill">RWD 響應式</span>
+          <span class="pill">可無後端部署</span>
+          <span class="pill">語意化標籤</span>
+          <span class="pill">深淺色自適應</span>
+        </div>
+      </div>
+      <div class="hero-card glass">
+        <h3 style="margin-top:0">快速上手清單</h3>
+        <ul>
+          <li>在 <code>&lt;title&gt;</code> 與頁面文字填上你的名稱。</li>
+          <li>替換導覽列連結到你的社群/履歷。</li>
+          <li>把 <strong>作品集</strong> 區塊改成你的專案卡片。</li>
+          <li>設定 <strong>聯絡表單</strong> 的表單 action。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <h2 class="section-title">關於我</h2>
+      <p class="muted">在這裡用 3~4 句話，說明你的背景、擅長領域與目前目標。盡量具體：年資、工具、正在學的內容、你能幫客戶/雇主解決的問題。</p>
+      <div class="grid cols-2" style="margin-top:16px">
+        <article class="card">
+          <h3>我的技能</h3>
+          <p>HTML、CSS、JavaScript、Python、電機/資電背景、資料可視化、AI 入門指導…</p>
+        </article>
+        <article class="card">
+          <h3>我的亮點</h3>
+          <p>跨領域整合、良好溝通、交付速度快、偏好簡潔設計與高可讀性程式碼。</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <h2 class="section-title">作品集</h2>
+      <p class="muted">以下是 3 個示範卡片，替換成你的專案連結與截圖。</p>
+      <div class="grid cols-3" style="margin-top:16px">
+        <article class="card">
+          <h3>專案 A</h3>
+          <p class="muted">一句話說清楚它做什麼、為誰解決了什麼問題。</p>
+          <p style="margin-top:10px"><a class="btn" href="#">查看專案 →</a></p>
+        </article>
+        <article class="card">
+          <h3>專案 B</h3>
+          <p class="muted">使用的技術（e.g. React、Flask、SQLite），量化成果（+25% 使用率）。</p>
+          <p style="margin-top:10px"><a class="btn" href="#">查看專案 →</a></p>
+        </article>
+        <article class="card">
+          <h3>專案 C</h3>
+          <p class="muted">附上 GitHub / Demo 網址，最好有截圖或 GIF。</p>
+          <p style="margin-top:10px"><a class="btn" href="#">查看專案 →</a></p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2 class="section-title">聯絡我</h2>
+      <p class="muted">把這個表單的 <code>action</code> 換成你的表單服務（例如 Formspree、Netlify Forms）或直接改成 mailto 連結。</p>
+      <form class="card" action="#" method="post" aria-label="聯絡表單">
+        <div>
+          <label for="name">你的名字</label>
+          <input id="name" name="name" placeholder="王小明" required />
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input id="email" type="email" name="email" placeholder="you@example.com" required />
+        </div>
+        <div>
+          <label for="msg">訊息</label>
+          <textarea id="msg" name="message" rows="4" placeholder="想合作或提案嗎？留言給我吧！"></textarea>
+        </div>
+        <button class="btn primary" type="submit">送出表單</button>
+      </form>
+      <p style="margin-top:12px">
+        或者直接寫信：
+        <a class="pill" href="mailto:hello@example.com">hello@example.com</a>
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container center" style="gap:12px; flex-direction:column; text-align:center">
+      <div class="inline-list">
+        <a class="pill" href="#">GitHub</a>
+        <a class="pill" href="#">LinkedIn</a>
+        <a class="pill" href="#">Instagram</a>
+      </div>
+      <small>© <span id="year"></span> 你的名字 — All rights reserved.</small>
+    </div>
+  </footer>
+
+  <script>
+    // 動態年份
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // 簡單的錨點滾動
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const el = document.querySelector(a.getAttribute('href'))
+        if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
+      })
+    })
+  </script>
+</body>
+</html>
